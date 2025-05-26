@@ -1,0 +1,40 @@
+<div class="flex flex-col gap-2 border border-[var(--border-color)] bg-[var(--card)] min-h-40 rounded-lg py-2.5 px-3">
+    <div class="flex items-center justify-between">
+        <div class="flex gap-3">
+            <lucide-angular [img]="GhostIcon" [size]="40"
+                class="bg-[#cecece] rounded-full text-black p-1"></lucide-angular>
+            <p class="flex items-center font-geist-mono">
+                <ng-container *ngIf="poll.pollType === 'Anonymous'; else publicType">Anonymous</ng-container>
+                <ng-template #publicType>
+                    <lucide-angular [img]="Volume1Icon" [size]="16" class="inline-block mx-1"></lucide-angular>
+                    Public
+                </ng-template>
+            </p>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+            <lucide-angular [img]="AlarmClockOffIcon" *ngIf="finish" [size]="20" class="my-icon"></lucide-angular>
+            <lucide-angular [img]="TimerIcon" *ngIf="!finish" [size]="20" class="my-icon"></lucide-angular>
+            <h4 class="text-sm font-geist-mono">{{ countdown }}</h4>
+        </div>
+    </div>
+
+    <h3 class="flex-grow mt-2 text-lg font-geist-mono">{{ poll.question }}?</h3>
+
+    <p class="font-geist-mono text-xs">
+        {{ totalVotes }} votes - {{ finish ? 'Inactive' : 'Active' }}
+    </p>
+
+    <button *ngIf="!finish; else resultBtn" (click)="handleOpenVote()"
+        class="bg-[#cecece] rounded py-1.5 px-4 font-geist-mono text-black font-semibold cursor-pointer hover:bg-gray-100 disabled:hover:bg-[#cecece] disabled:cursor-not-allowed transition-colors duration-200"
+        [disabled]="hasVotedPoll">
+        {{ hasVotedPoll ? "You can't vote again" : 'Vote' }}
+    </button>
+
+    <ng-template #resultBtn> <!-- ✅ este nombre debe coincidir en mayúscula/minúscula -->
+        <button (click)="handleOpenResults()"
+            class="bg-[#cecece] rounded py-1.5 px-4 font-geist-mono text-black font-semibold cursor-pointer hover:bg-gray-100 disabled:hover:bg-[#cecece] disabled:cursor-not-allowed transition-colors duration-200">
+            View Results
+        </button>
+    </ng-template>
+</div>
