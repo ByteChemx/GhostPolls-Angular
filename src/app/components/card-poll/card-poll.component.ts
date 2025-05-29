@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { CardPollProps } from '@/types'
-import { DappStoreService } from '@/services/dapp-store.service'
+// import { DappStoreService } from '@/services/dapp-store.service'
 import { NgIf } from '@angular/common'
 import {
     GhostIcon,
@@ -28,10 +28,7 @@ export class CardPollComponent implements OnInit {
     readonly TimerIcon = TimerIcon
     readonly AlarmClockOffIcon = AlarmClockOffIcon
 
-    constructor(private dappStore: DappStoreService) {}
-
     ngOnInit() {
-        this.hasVotedPoll = this.dappStore.pollsVoted.includes(this.poll.pollId)
         this.startCountdown()
     }
 
@@ -40,13 +37,11 @@ export class CardPollComponent implements OnInit {
     }
 
     handleOpenVote() {
-        this.dappStore.setSelectedPoll(this.poll)
-        this.dappStore.setVoteModalOpen(true)
+        alert('Esto deberia abrir un modal para poder votar')
     }
 
     handleOpenResults() {
-        this.dappStore.setSelectedPoll(this.poll)
-        this.dappStore.setVoteResultModalOpen(true)
+        alert('Esto deberia abrir los resultados')
     }
 
     private startCountdown() {
