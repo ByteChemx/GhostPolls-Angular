@@ -28,6 +28,7 @@ import { CopyrightIcon, LucideAngularModule } from 'lucide-angular'
     templateUrl: './app.component.html',
 })
 export class AppComponent {
+    public title = 'GhosPolls-DApp-Angular'
     polls = mockPolls
     readonly CopyrightIcon = CopyrightIcon
 }
